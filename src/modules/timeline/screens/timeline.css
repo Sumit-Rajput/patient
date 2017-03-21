@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.bottomContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.root {
+  display: 'flex';
+  flexWrap: 'wrap';
+  justifyContent: 'space-around';
+}
