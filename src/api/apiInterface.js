@@ -6,23 +6,9 @@ const BASE_URL = 'http://localhost:5000';
 
 const getCompleteURL = url => `${BASE_URL}${url}`;
 
-const getCall = (url, body) => api(
+const apiCall = (url, method, body) => api(
   getCompleteURL(url),
-  'GET',
-  getHeaders(tokenManager.accessToken),
-  body,
-);
-
-const postCall = (url, body) => api(
-  getCompleteURL(url),
-  'POST',
-  getHeaders(tokenManager.accessToken),
-  body,
-);
-
-const deleteCall = (url, body) => api(
-  getCompleteURL(url),
-  'DELETE',
+  method,
   getHeaders(tokenManager.accessToken),
   body,
 );
@@ -32,9 +18,7 @@ const shouldGetNewAccessToken = tokenManager.shouldGetNewAccessToken;
 const getRefreshToken = tokenManager.refreshToken;
 
 export {
-  getCall,
-  postCall,
-  deleteCall,
+  apiCall,
   setToken,
   shouldGetNewAccessToken,
   getRefreshToken,

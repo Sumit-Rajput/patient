@@ -1,12 +1,6 @@
 import { fork } from 'redux-saga/effects';
-import {
-  watchGetApi,
-  watchPostApi,
-  watchDeleteApi,
-} from './apiSaga';
+import watchApi from './apiSaga';
 
 export default function* () {
-  yield fork(watchGetApi);
-  yield fork(watchPostApi);
-  yield fork(watchDeleteApi);
+  yield fork(watchApi);
 }
