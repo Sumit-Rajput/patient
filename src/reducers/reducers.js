@@ -1,23 +1,12 @@
 import { combineReducers } from 'redux';
-import authentication from '../modules/authentication/reducers/authentication';
-import timeline from '../modules/timeline/reducers/timeline';
+import { reducer as formReducer } from 'redux-form';
+import patient from '../modules/patient/reducers';
 import loader from '../api/reducers/loader';
-import { LOGOUT } from '../modules/authentication/actions/loginAction';
 
 const reducers = {
-  authentication,
-  timeline,
+  patient,
   loader,
+  form: formReducer,
 };
 
-const appReducer = combineReducers(reducers);
-
-const rootReducer = (state, action) => {
-  if (action.type === LOGOUT) {
-    return undefined;
-  }
-
-  return appReducer(state, action);
-};
-
-export default rootReducer;
+export default combineReducers(reducers);
