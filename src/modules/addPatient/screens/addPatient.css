@@ -1,44 +1,24 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh
-}
-
-.formContainer {
-  width: 300px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  margin-top: 10%;
 }
 
 .insideForm {
   display: flex;
   flex-direction: column;
-  padding-left: 15px;
 }
 
-.header {
-  height: 50px;
+.submitButton {
+  margin: 10px;
+}
+
+.subContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.headerTitle {
-  margin: 0;
-  text-align: center;
-}
-
-.content {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-}
-
-.error {
-  color: #f44336;
+  flex-direction: row;
 }

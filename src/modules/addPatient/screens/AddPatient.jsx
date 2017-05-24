@@ -36,15 +36,24 @@ class AddPatient extends React.Component {
   render() {
     return (
       <div className={style.container}>
+        <h3>Add Patient</h3>
         <form className={style.insideForm}>
-          <TextField label="First Name" {...linkState(this, 'firstName')} />
-          <TextField label="Last Name" {...linkState(this, 'lastName')} />
-          <TextField label="Email" {...linkState(this, 'email')} />
-          <TextField label="Phone" {...linkState(this, 'phone')} />
-          <Select label="Gender" options={['Male', 'Female']} {...linkState(this, 'gender')} />
-          <DatePicker label="Date of birth" {...linkState(this, 'dob')} />
-          <TextArea label="Notes" {...linkState(this, 'notes')} />
-          <button type="button" onClick={this.submitButtonCalled}>Submit</button>
+          <div className={style.subContainer}>
+            <TextField label="First Name" {...linkState(this, 'firstName')} />
+            <TextField label="Last Name" {...linkState(this, 'lastName')} />
+          </div>
+          <div className={style.subContainer}>
+            <TextField label="Email" {...linkState(this, 'email')} />
+            <TextField label="Phone" {...linkState(this, 'phone')} />
+          </div>
+          <div className={style.subContainer}>
+            <Select label="Gender" options={['Male', 'Female']} {...linkState(this, 'gender')} />
+            <DatePicker label="Date of birth" {...linkState(this, 'dob')} />
+          </div>
+          <div>
+            <TextArea label="Notes" {...linkState(this, 'notes')} />
+          </div>
+          <button className={style.submitButton} type="button" onClick={this.submitButtonCalled}>Submit</button>
         </form>
       </div>
     );
