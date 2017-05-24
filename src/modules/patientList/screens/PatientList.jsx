@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 const style = require('./patientList.css');
 
@@ -16,6 +17,10 @@ class PatientList extends React.Component {
   render() {
     return (
       <div className={style.container}>
+        <div className={style.header}>
+          <h2>Patient List</h2>
+          <Link className={style.link} to="/add">Add patient</Link>
+        </div>
         <div className={style.root}>
           {this.getPatientsElements()}
         </div>
@@ -30,7 +35,7 @@ PatientList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  patients: state.patient.list,
+  patients: state.patient.patientList,
 });
 
 

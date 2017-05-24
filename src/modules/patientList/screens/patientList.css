@@ -2,12 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-}
-
-.bottomContainer {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .root {
@@ -15,8 +11,23 @@
   flex-direction: column;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.link {
+  font-size: 20px;
+}
+
 .item {
 	display: flex;
 	flex-direction: column;
   margin: 20px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import TextField from '../../../components/TextField';
 import Select from '../../../components/Select';
 import TextArea from '../../../components/TextArea';
@@ -35,7 +36,10 @@ class AddPatient extends React.Component {
   render() {
     return (
       <div className={style.container}>
-        <h3>Add Patient</h3>
+        <div className={style.header}>
+          <h3>Add Patient</h3>
+          <Link className={style.link} to="/patient">Patient List</Link>
+        </div>
         <form className={style.insideForm}>
           <div className={style.subContainer}>
             <TextField label="First Name" {...linkState(this, 'firstName')} />
