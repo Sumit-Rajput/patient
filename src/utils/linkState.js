@@ -9,4 +9,5 @@ export default (self, key, onChange) => ({
     }
   },
   value: self.state[key],
+  error: self.state.errors && self.state.errors[key],
 });

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
 import { getPatientListAction } from '../../patient/actions/patientListActions';
 
@@ -22,11 +21,6 @@ class PatientList extends React.Component {
   render() {
     return (
       <div className={style.container}>
-        <AppBar
-          title={<span>Instagram Timeline</span>}
-          iconElementLeft={<div />}
-          iconElementRight={<div />}
-        />
         <div className={style.root}>
           {this.props.isGettingPatient ? <h1>Loading ...</h1> : this.getPatientsElements()}
         </div>
