@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getPatientListAction } from '../../patient/actions/patientListActions';
 
 const style = require('./patientList.css');
 
 class PatientList extends React.Component {
-
-  componentWillMount() {
-    this.props.getPatient();
-  }
 
   getPatientsElements = () => (this.props.patients || []).map(patient => (
     <div className={style.item} key={patient.id}>
@@ -22,7 +17,7 @@ class PatientList extends React.Component {
     return (
       <div className={style.container}>
         <div className={style.root}>
-          {this.props.isGettingPatient ? <h1>Loading ...</h1> : this.getPatientsElements()}
+          {this.getPatientsElements()}
         </div>
       </div>
     );
@@ -31,18 +26,12 @@ class PatientList extends React.Component {
 
 
 PatientList.propTypes = {
-  getPatient: React.PropTypes.func.isRequired,
   patients: React.PropTypes.array.isRequired,
-  isGettingPatient: React.PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  isGettingPatient: state.patient.isGettingPatient,
   patients: state.patient.list,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getPatient: () => dispatch(getPatientListAction()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientList);
+export default connect(mapStateToProps, null)(PatientList);

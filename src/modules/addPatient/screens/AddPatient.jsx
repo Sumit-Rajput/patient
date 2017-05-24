@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { addPatientAction } from '../../patient/actions/addPatientAction';
 import TextField from '../../../components/TextField';
 import Select from '../../../components/Select';
 import TextArea from '../../../components/TextArea';
@@ -61,19 +60,13 @@ class AddPatient extends React.Component {
 }
 
 AddPatient.propTypes = {
-  isAddingPatient: React.PropTypes.bool.isRequired,
   error: React.PropTypes.string,
 };
 
 AddPatient.defaultProps = { error: '' };
 
-const mapStateToProps = state => ({
-  isAddingPatient: state.patient.isAddingPatient,
-  error: state.patient.error,
-});
-
 const mapDispatchToProps = dispatch => ({
-  handleSubmit: values => dispatch(addPatientAction(values)),
+  handleSubmit: values => dispatch({ type: values }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPatient);
+export default connect(null, mapDispatchToProps)(AddPatient);
