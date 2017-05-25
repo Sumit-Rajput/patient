@@ -7,6 +7,7 @@ import TextArea from '../../../components/TextArea';
 import DatePicker from '../../../components/DatePicker';
 import linkState from '../../../utils/linkState';
 import validate from './validate';
+import { addPatient } from '../../patient/actions';
 
 const style = require('./addPatient.css');
 
@@ -15,21 +16,34 @@ class AddPatient extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      dob: '',
-      gender: '',
-      phone: '',
-      notes: '',
-      errors: {},
-    };
+    this.state = this.getInitialState();
   }
+
+  getInitialState = () => ({
+    firstName: '',
+    lastName: '',
+    email: '',
+    dob: '',
+    gender: '',
+    phone: '',
+    notes: '',
+    errors: {},
+  })
 
   submitButtonCalled = () => {
     if (validate(this)) {
-      console.log('No Erros');
+      const { errors, ...patient } = this.state;
+
+      this.props.addPatient(patient).then((success, error) => {
+        if (success) {
+          this.setState(this.getInitialState());
+        } else {
+          const serverError = {
+            server: error,
+          };
+          this.setState({ errors: serverError });
+        }
+      });
     }
   }
 
@@ -56,6 +70,7 @@ class AddPatient extends React.Component {
           <div>
             <TextArea label="Notes" {...linkState(this, 'notes')} />
           </div>
+          {this.state.errors.server && <h6 className={style.error} >{this.state.errors.server}</h6>}
           <button className={style.submitButton} type="button" onClick={this.submitButtonCalled}>Submit</button>
         </form>
       </div>
@@ -64,13 +79,13 @@ class AddPatient extends React.Component {
 }
 
 AddPatient.propTypes = {
-  error: React.PropTypes.string,
+  addPatient: React.PropTypes.func.isRequired,
 };
 
 AddPatient.defaultProps = { error: '' };
 
 const mapDispatchToProps = dispatch => ({
-  handleSubmit: values => dispatch({ type: values }),
+  addPatient: values => dispatch(addPatient(values)),
 });
 
 export default connect(null, mapDispatchToProps)(AddPatient);

@@ -32,6 +32,7 @@ const validate = (self) => {
   }
 
   self.setState({ errors });
+
   return Object.keys(errors).length === 0;
 };
 

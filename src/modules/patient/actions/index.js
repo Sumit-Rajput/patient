@@ -1,7 +1,6 @@
 
 import database from '../../firebase';
 
-
 export const actionTypes = {
   GET_PATIENTS_SUCCESS: 'GET_PATIENTS_SUCCESS',
   GET_PATIENTS_FAILURE: 'GET_PATIENTS_FAILURE',
@@ -44,10 +43,10 @@ export function addPatient(patienInfo) {
 
     return newNode.set(patienInfo)
     .then((res) => {
-      dispatch(patienAddSuccess(res));
+      return Promise.resolve(true, null);
     })
     .catch((err) => {
-      dispatch(patientAddFailure(err));
+      return Promise.reject(false, err);
     });
   };
 }
@@ -58,17 +57,12 @@ export function getPatients() {
     const nodeRef = database.ref('patients');
     const patientList = [];
     return nodeRef.on('value', (snap) => {
+
       snap.forEach((item) => {
         const itemVal = item.val();
         patientList.push(itemVal);
-        return patientList;
       });
-    })
-    .then((list) => {
-      dispatch(getPatientsListSuccess(list));
-    })
-    .catch((err) => {
-      dispatch(getPatientsListFailure(err));
+      dispatch(getPatientsListSuccess(patientList));
     });
   };
 }
